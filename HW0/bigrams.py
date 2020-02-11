@@ -18,9 +18,9 @@ bigramsCounts = bigrams.reduceByKey(lambda a, b: a + b).map(lambda x : (x[0][0],
 
 bigramsFreq = wordCounts.join(bigramsCounts).map(lambda x :((x[0],x[1][1][0]),x[1][1][1]/x[1][0]))
 
-bigramsCounts.coalesce(1, shuffle=True).saveAsTextFile(sys.argv[2])
-bigramsFreq.coalesce(1, shuffle=True).saveAsTextFile(sys.argv[3])
-# bigramsCounts.saveAsTextFile("./counts-5")
-# bigramsFreq.saveAsTextFile("./freq-5")
+# bigramsCounts.coalesce(1, shuffle=True).saveAsTextFile(sys.argv[2])
+# bigramsFreq.coalesce(1, shuffle=True).saveAsTextFile(sys.argv[3])
+bigramsCounts.saveAsTextFile("./counts-5")
+bigramsFreq.saveAsTextFile("./freq-5")
 
 sc.stop()
